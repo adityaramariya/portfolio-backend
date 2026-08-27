@@ -11,7 +11,10 @@ builder.Services.AddCors(options =>
     options.AddPolicy("Portfolio", policy =>
     {
         policy
-        .WithOrigins("http://localhost:3000")
+        .WithOrigins(
+        "http://localhost:3000", 
+        "https://adityaramariya.github.io"
+        )
         .AllowAnyHeader()
         .AllowAnyMethod();
     });
@@ -25,13 +28,13 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+// if (app.Environment.IsDevelopment())
+// {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+// }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseCors("Portfolio");
 app.UseAuthorization();
 
